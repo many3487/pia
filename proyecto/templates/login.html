@@ -1,0 +1,38 @@
+{% extends "./baselogin.html" %}
+
+{% block title %}Login {% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+ 
+
+<form class= "form-signin" action="/" method="POST">
+  
+    <img class="mb-4" src="{{ url_for('static', filename='img/mano.png') }}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
+
+    <div>
+      <input type="text" class="form-control"  placeholder="Usuario" name="usuario" />
+      <input type="password" class="form-control" placeholder="Contraseña" name="password" />
+    </div>
+    {% if error %}
+      <div class="alert alert-danger" role="alert">
+          {{ error }}
+      </div>
+    {% endif %}
+    </div>
+    
+    <button class="w-100 btn btn-lg btnLogin" type="submit">Inicia sesión</button>
+    <a href="{{ url_for('registro') }}" class="p mb-3 fw-normal" id="Registro" > Regístrate</a>
+    
+    
+  </form>
+  <footer class="row col-12">
+    <p class="mt-5 mb-3 text-muted colorA">&copy; 2023 <a href="https://www.linkedin.com/in/manuel-javier-quevedo-jimenez-7579a3120/" target="_blank" class="colorA">By many</a> </p>
+  </footer>
+
+
+{% endblock %}
