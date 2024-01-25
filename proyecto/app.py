@@ -7,9 +7,11 @@ app = Flask(__name__)
 user_model = ModelUser()
 
 
-
-
 @app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('cursos.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         usuario = request.form['usuario']
