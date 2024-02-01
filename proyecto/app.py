@@ -11,6 +11,10 @@ user_model = ModelUser()
 def home():
     return render_template('cursos.html')
 
+@app.route('/menu')
+def menu():
+    return render_template('menu.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
