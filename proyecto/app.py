@@ -11,6 +11,10 @@ user_model = ModelUser()
 def home():
     return render_template('cursos.html')
 
+@app.route('/icon-home')
+def icon_home():
+    return render_template('icon-home.html')
+
 @app.route('/menu')
 def menu():
     return render_template('menu.html')
