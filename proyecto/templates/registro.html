@@ -12,7 +12,7 @@
 
 
 <form class= "form-signin" action="/registro" method="POST">
-    <img class="mb-4" src="{{ url_for('static', filename='img/mano.png') }}" alt="" width="72" height="72">
+    <img class="mb-3" src="{{ url_for('static', filename='img/mano.png') }}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Registro</h1>
     {% if completado %}
     <div class="alert alert-success" role="alert">
@@ -40,8 +40,11 @@
       </div>
     
     
-    <button class="w-100 btn btn-lg btnLogin" type="submit">Regístrate</button>
-    <a href="{{ url_for('login') }}" class="mb-3 fw-normal">Volver</a>
+    <button class="w-100 btn btn-lg btnLogin mb-3" type="submit">Regístrate</button>
+    <a href="{{ url_for('login') }}" class="fw-normal">Login</a>
+    <br>
+    <a href="{{ url_for('home') }}" class="fw-normal">Volver</a>
+
 </form>
 <footer>
     <p class="mt-5 mb-3 text-muted colorA">&copy; 2023 <a href="https://www.linkedin.com/in/manuel-javier-quevedo-jimenez-7579a3120/" target="_blank" class="colorA">By many</a> </p>

@@ -9,7 +9,11 @@ user_model = ModelUser()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('cursos.html')
+    user = session.get('user')
+    if user:
+        return render_template('menu.html', user=user)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/icon-home')
 def icon_home():
@@ -17,7 +21,8 @@ def icon_home():
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html')
+    user = session.get('user')
+    return render_template('menu.html', user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,11 +38,12 @@ def login():
             
             contrasena = user['password']
             if contrasena == password:
-                # Autenticación exitosa, puedes redirigir al usuario a otra página.
-                return 'Autenticación exitosa'
+                # Autenticación exitosa, almacena el usuario en la sesión
+                session['user'] = user
+                return redirect(url_for('menu'))
             else:
-                error= 'usuario o contraseña errado, intente nuevamente.'
-                return render_template('login.html',error= error)
+                error= 'Usuario o contraseña incorrecta. Por favor, inténtelo nuevamente.'
+                return render_template('login.html', error=error)
         
         return render_template('login.html')
     
@@ -55,7 +61,7 @@ def registro():
         confirmar_contraseña = request.form['confirm']
 
         if len(users) > 0:
-            mensaje = "Este usuario ya se encuentra registrado, ingrese uno distinto nuevamente"
+            mensaje = "Este usuario ya se encuentra registrado."
             return render_template('registro.html',mensaje=mensaje)
         else:
             # El usuario no existe en la base de datos
@@ -74,6 +80,10 @@ def registro():
                 return render_template('registro.html', mensaje=mensaje)      
     return render_template('registro.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('login'))
 
 if __name__== "__main__":
     # app.register_error_handler(404, pagina_no_encontrada)

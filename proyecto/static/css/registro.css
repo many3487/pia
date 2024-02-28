@@ -71,8 +71,8 @@ form{
   box-shadow: -10px 15px 20px 0px #3d3d3d;
 }
 .btnLogin{
-    margin: 50px 0 0 0;
-  background-color: #65c22c !important;
+    margin: 40px 0 0 0;
+    background-color: #65c22c !important;
     border-color: #65c22c !important;
     color: #ffff !important;
 }

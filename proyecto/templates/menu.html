@@ -1,4 +1,4 @@
-<nav class="flex justify-between items-center p-4">
+<nav class="flex justify-between items-center p-4 bg-gray-300 shadow-lg rounded-b-lg shadow-cyan-500/50 border-l-4 ">
     <ul class="flex space-x-4 items-center">
         <li class=""> 
             <a href="{{ url_for('home')}}">
@@ -15,11 +15,20 @@
         </ul>
     </div>
     <ul class="flex space-x-4 items-center">
+        {%if user %}
+            <li>
+                <p>Bienvenido {{user.usuario}}</p>
+            </li>
+            <li>
+                <a href="{{url_for('logout')}}">cerrar sesion</a>
+            </li>
+        {%else %}
         <li>
             <a href="{{url_for('login')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-black text-white">Iniciar sesión</button></a>
         </li>
         <li>
             <a href="{{url_for('registro')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-sky-400	text-white">Registrarse</button></a>
         </li>
+        {% endif%}
     </ul>
 </nav>
