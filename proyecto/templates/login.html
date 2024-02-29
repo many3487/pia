@@ -9,9 +9,9 @@
 {% block body %}
  
 
-<form class= "form-signin" action="/" method="POST">
+<form class= "form-signin" action="/login" method="POST">
   
-    <img class="mb-4" src="{{ url_for('static', filename='img/mano.png') }}" alt="" width="72" height="72">
+    <img class="mb-3" src="{{ url_for('static', filename='img/mano.png') }}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
     <div>
@@ -19,7 +19,7 @@
       <input type="password" class="form-control" placeholder="Contraseña" name="password" />
     </div>
     {% if error %}
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger mt-1" role="alert">
           {{ error }}
       </div>
     {% endif %}

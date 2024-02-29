@@ -1,4 +1,4 @@
-<nav class="flex justify-between items-center p-4 bg-gray-300 shadow-lg rounded-b-lg shadow-cyan-500/50 border-l-4 ">
+<nav class="flex justify-between items-center p-4 w-full bg-gray-300 shadow-lg rounded-b-lg shadow-cyan-500/50 border-l-4 ">
     <ul class="flex space-x-4 items-center">
         <li class=""> 
             <a href="{{ url_for('home')}}">
@@ -10,24 +10,25 @@
     <div class="flex-grow flex items-center justify-center">
         <ul class="flex space-x-4 items-center">
             <li> 
-                <input type="text" id="busqueda" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar"> 
+                <input type="text" id="busqueda" class="bg-gray-50 border max-w-[500px] w-96 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar"> 
             </li>
         </ul>
     </div>
     <ul class="flex space-x-4 items-center">
         {%if user %}
-            <li>
+            <li class="contents">
+                <img src="{{url_for('static',filename='img/user.png')}}" class="w-4 h-4">
                 <p>Bienvenido {{user.usuario}}</p>
             </li>
             <li>
-                <a href="{{url_for('logout')}}">cerrar sesion</a>
+                <a href="{{url_for('logout')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-sky-400 duration-700 hover:bg-sky-700 text-white">cerrar sesion</button></a>
             </li>
         {%else %}
         <li>
-            <a href="{{url_for('login')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-black text-white">Iniciar sesión</button></a>
+            <a href="{{url_for('login')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-gray-950 duration-300 hover:bg-gray-700 text-white">Iniciar sesión</button></a>
         </li>
         <li>
-            <a href="{{url_for('registro')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-sky-400	text-white">Registrarse</button></a>
+            <a href="{{url_for('registro')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-sky-400 duration-700 hover:bg-sky-700	text-white">Registrarse</button></a>
         </li>
         {% endif%}
     </ul>

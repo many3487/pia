@@ -6,14 +6,13 @@ from models.ModelUser import ModelUser
 app = Flask(__name__)
 user_model = ModelUser()
 
+app.secret_key = 'EducationForAll'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     user = session.get('user')
-    if user:
-        return render_template('menu.html', user=user)
-    else:
-        return redirect(url_for('login'))
+    return render_template('cursos.html', user=user)
+
 
 @app.route('/icon-home')
 def icon_home():
@@ -22,7 +21,7 @@ def icon_home():
 @app.route('/menu')
 def menu():
     user = session.get('user')
-    return render_template('menu.html', user=user)
+    return render_template('cursos.html', user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -44,9 +43,11 @@ def login():
             else:
                 error= 'Usuario o contraseña incorrecta. Por favor, inténtelo nuevamente.'
                 return render_template('login.html', error=error)
-        
-        return render_template('login.html')
-    
+        else:
+            print("Usuario no existe:", usuario)
+            error = 'Usuario no encontrado.'
+            return render_template('login.html', error=error)
+            
     return render_template('login.html')
 
 @app.route('/registro', methods=['POST','GET'])
