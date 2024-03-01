@@ -23,6 +23,14 @@ def menu():
     user = session.get('user')
     return render_template('cursos.html', user=user)
 
+@app.route('/perfil', methods=['GET', 'POST'])
+def perfil():
+    user = session.get('user')
+    if user is None:
+        return redirect(url_for('login'))
+    else:
+        return render_template('perfil.html', user=user)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

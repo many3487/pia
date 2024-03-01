@@ -20,8 +20,16 @@
                 <img src="{{url_for('static',filename='img/user.png')}}" class="w-4 h-4">
                 <p>Bienvenido {{user.usuario}}</p>
             </li>
+            <li class="relative">
+                <img id="perfilButton" src="{{url_for('static',filename='img/engranaje.png')}}" class="w-4 h-4" >
+                <ul id="perfilMenu" class="hidden absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-lg py-1 w-40">
+                    <!-- Agrega aquí tus opciones de perfil -->
+                    <li><a href="{{ url_for('perfil') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Perfil</a></li>                    <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Opción 2</a></li>
+                    <li><a href="{{url_for('logout')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerrar sesión</a></li>
+                </ul>
+            </li>
             <li>
-                <a href="{{url_for('logout')}}"><button class="border-solid rounded-md border-2 mt-2 p-3 bg-sky-400 duration-700 hover:bg-sky-700 text-white">cerrar sesion</button></a>
+                
             </li>
         {%else %}
         <li>
@@ -33,3 +41,22 @@
         {% endif%}
     </ul>
 </nav>
+
+<script>
+    // JavaScript para mostrar y ocultar el menú de perfil al hacer clic en el botón de perfil
+    document.addEventListener('DOMContentLoaded', function () {
+        const perfilButton = document.getElementById('perfilButton');
+        const perfilMenu = document.getElementById('perfilMenu');
+
+        perfilButton.addEventListener('click', function () {
+            perfilMenu.classList.toggle('hidden');
+        });
+
+        // Oculta el menú de perfil si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            if (!perfilMenu.contains(event.target) && event.target !== perfilButton) {
+                perfilMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
