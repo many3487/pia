@@ -1,7 +1,8 @@
 from pymongo import MongoClient
-
+import contraseñas as c
+print(c.usuario)
 # URL de conexión de MongoDB Atlas
-mongo_uri = "mongodb+srv://many3487:XMJ86STWK7@pia.ebz9chq.mongodb.net/"
+mongo_uri = f"mongodb+srv://{c.usuario}:{c.password}@pia.ebz9chq.mongodb.net/"
 
 client = MongoClient(mongo_uri)
 
